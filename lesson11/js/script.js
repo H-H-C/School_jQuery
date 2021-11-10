@@ -1,0 +1,47 @@
+$(function () 
+{
+  $('a').click(function () 
+  {
+    //bodyの最後の要素にdiv#bgを追加
+    $('body').append('<div id="bg">');
+
+    //bodyの最後の要素にdiv#photoを追加
+    $('body').append('<div id="photo">');
+
+    //それぞれを非表示にする
+    $('#bg').hide();
+    $('#photo').hide();
+
+    //#photoの中にimg要素を追加
+    $('#photo').html('<img>');
+
+    //img要素にsrc属性を設定
+    $('#photo img').attr('src', $(this).attr('href'));
+
+    //img要素にwidth, height, alt属性を追加
+    $('#photo img').attr('width', 640);
+    $('#photo img').attr('height', 420);
+    $('#photo img').attr('alt', 'Photo');
+
+    //#bgと#photoをフェードイン
+    $('#bg').fadeIn();
+    $('#photo').fadeIn();
+
+    //背景をクリック
+    $('#bg').click(function () 
+    {
+      //背景（自分自身）をフェードアウト、完了したら削除
+      $(this).fadeOut(function () 
+      {
+        $(this).remove();
+      });
+
+      //拡大画像をフェードアウト、完了したら削除
+      $('#photo').fadeOut(function () 
+      {
+        $(this).remove();
+      });
+    });
+    return false;
+  });
+});
